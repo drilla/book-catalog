@@ -1,0 +1,26 @@
+AppBundle\Entity\Book:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\BookRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        publicationDate:
+            type: date
+        catalogDate:
+            type: date
+        rating:
+            type: float
+            nullable: true
+        genre:
+            type: integer
+        author:
+            type: integer
+    lifecycleCallbacks: {  }
