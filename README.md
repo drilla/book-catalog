@@ -1,44 +1,77 @@
-# book-catalog
-Тестовое задание для Рымар софт (Symfony 3.4)
+Symfony Standard Edition
+========================
 
-Необходимо написать небольшое тестовое приложение на стеке Symfony3/MySql(или Postgres) - Каталог книг
-В качестве ORM использовать Doctrine2.
-Конфигурации doctrine и symfony хранить в yml-файлах
-Для CRUD операций необходимо использовать формы 
-Базовая часть
-В рамках приложения есть 4 сущности:
-Книга (название, дата выпуска, дата занесения в каталог, рейтинг(float <= 10), Жанр, Автор
-Жанр (название)
-Автор (имя, дата рождения, пол)
-Пользователь (логин, пароль)
-Страницы сайта:
-Главная
-Создание/редактирование/удаление книги
-Регистрация/логин
-Профиль пользователя
-Страница жанры - список всех жанров (имеет фильтр по жанру, если он активен - показываются книги выбранного жанра)
-Создание/редактирование/удаление жанра
-Страница авторы - список всех авторов (имеет фильтр по автору, если он активен - показываются книги выбранного автора)
-Создание/редактирование/удаление автора
-На главной странице нужно показывать 10 последних книг, занесенных в каталог. Автор и жанр книги кликабельны и ведут на страницы отфильтрованные по жанру/автору. 
-Автора и Жанр нельзя удалить, пока к ним привязан хотя бы 1 книга.
-На сайте должна быть возможность зарегистрироваться и авторизоваться через пару username/password. Допускается использование FOSUserBundle или простой формы регистрации/авторизации 
+**WARNING**: This distribution does not support Symfony 4. See the
+[Installing & Setting up the Symfony Framework][15] page to find a replacement
+that fits you best.
 
-На странице пользователя нужно просто показывать его имя и форму для его изменения (имя - уникально)
-Дополнительные задачи
-Добавить возможность пользователям добавлять книги в избранное. На странице пользователя должны отображаться избранные им книги
-Для пользователя и книг реализовать загрузку аватара (*.jpg|jpeg|png) (при отсутствии показывать заглушку)
- На странице показа книги показывать 5 книг, "рекомендованных к прочтению". Они вычисляются как случайные книги того же жанра, что и просматриваемая книга, за исключением самой просматриваемой. Если в данном блоке не набирается 5 книг - дозаполнить его cлучайными книгами того же автора. Если же и при этом сценарии книг не набирается, дозаполнить любыми случайными книгами из каталога.
-Для всех списков книг (главная, жанр, автор) добавить пагинацию (рекомендуется KnpPaginatorBundle). 
-На главной странице добавить фильтры для книг по автору, жанру и времени издания (диапазон дат). 
-Добавить на сайте глобальный поиск по книгам - общий омнибокс на главной, который по 1 строке ищет книги, похожие названию или описанию, или если под данную строку подходит автор или жанр книги
-Реализовать для авторизованных пользователей возможности изменения рейтинга книги +/- расчёт рейтинга, как (количество плюсов - количество минусов) / общее количество голосов *10
-Все действия сделать асинхронными.
-Перевести сайт на pjax
-Реализовать простое JSON-api для сущностей книг /авторов/жанров (показ/создание/редактирование/удаление). (рекомендуется JMSSerializerBundle + FOSRestBundle+ NelmioApiDocBundle)
+Welcome to the Symfony Standard Edition - a fully-functional Symfony
+application that you can use as the skeleton for your new applications.
 
-Результат работы разместить на github в публичном репозитории. 
+For details on how to download and get started with Symfony, see the
+[Installation][1] chapter of the Symfony Documentation.
 
-Процесс разработки не должен быть в одном коммите. Каждый коммит должен содержать результат работы над одним пунктом задачи.
+What's inside?
+--------------
 
-Особой вёрстки не нужно, но желательно использовать какой-нибудь css-фреймворк, например Bootstrap.
+The Symfony Standard Edition is configured with the following defaults:
+
+  * An AppBundle you can use to start coding;
+
+  * Twig as the only configured template engine;
+
+  * Doctrine ORM/DBAL;
+
+  * Swiftmailer;
+
+  * Annotations enabled for everything.
+
+It comes pre-configured with the following bundles:
+
+  * **FrameworkBundle** - The core Symfony framework bundle
+
+  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
+    template and routing annotation capability
+
+  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
+
+  * [**TwigBundle**][8] - Adds support for the Twig templating engine
+
+  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
+    component
+
+  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
+    sending emails
+
+  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
+
+  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
+    the web debug toolbar
+
+  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
+    configuring and working with Symfony distributions
+
+  * [**SensioGeneratorBundle**][13] (in dev env) - Adds code generation
+    capabilities
+
+  * [**WebServerBundle**][14] (in dev env) - Adds commands for running applications
+    using the PHP built-in web server
+
+  * **DebugBundle** (in dev/test env) - Adds Debug and VarDumper component
+    integration
+
+All libraries and bundles included in the Symfony Standard Edition are
+released under the MIT or BSD license.
+
+Enjoy!
+
+[1]:  https://symfony.com/doc/3.4/setup.html
+[6]:  https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html
+[7]:  https://symfony.com/doc/3.4/doctrine.html
+[8]:  https://symfony.com/doc/3.4/templating.html
+[9]:  https://symfony.com/doc/3.4/security.html
+[10]: https://symfony.com/doc/3.4/email.html
+[11]: https://symfony.com/doc/3.4/logging.html
+[13]: https://symfony.com/doc/current/bundles/SensioGeneratorBundle/index.html
+[14]: https://symfony.com/doc/current/setup/built_in_web_server.html
+[15]: https://symfony.com/doc/current/setup.html
