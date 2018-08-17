@@ -15,13 +15,12 @@ AppBundle\Entity\Book:
         publicationDate:
             type: date
         catalogDate:
-            type: datetime
-            options:
-                default: "CURRENT_TIMESTAMP"
+            type: datetimetz
         rating:
             type: float
             nullable: true
-    lifecycleCallbacks: {  }
+    lifecycleCallbacks:
+        prePersist: [prePersist]
 
     manyToOne:
         genre:

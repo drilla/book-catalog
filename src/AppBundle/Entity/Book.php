@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
+
 class Book
 {
     /** @var int */
@@ -44,5 +46,9 @@ class Book
     public function setRating(float $rating = null)                : Book {$this->rating = $rating; return $this;}
     public function setGenre(Genre $genre)                         : Book {$this->genre = $genre; return $this;}
     public function setAuthor(Author $author)                      : Book {$this->author = $author; return $this;}
+
+    public function prePersist(LifecycleEventArgs  $eventArgs) {
+        $this->catalogDate = new \DateTime();
+    }
 }
 
