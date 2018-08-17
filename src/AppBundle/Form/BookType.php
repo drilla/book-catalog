@@ -17,14 +17,19 @@ class BookType extends AbstractType
             ->add('name')
             ->add('publicationDate')
             ->add('rating')
-            ->add('genre', EntityType::class, ['class' => Genre::class])
+            ->add('genre', EntityType::class, [
+                'class' => Genre::class,
+                'choice_label' => function(Genre $genre) {
+                    return $genre->getName();
+                }
+            ])
             ->add('author', EntityType::class, [
                 'class' => Author::class,
                 'choice_label' => function(Author $author) {
                     return $author->getName();
                 },
                 'placeholder' => 'Выберите автора...'
-                ])
+            ])
         ;
     }
 
