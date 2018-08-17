@@ -19,8 +19,16 @@ AppBundle\Entity\Book:
         rating:
             type: float
             nullable: true
-        genre:
-            type: integer
-        author:
-            type: integer
     lifecycleCallbacks: {  }
+
+    manyToOne:
+        genre:
+          targetEntity: AppBundle\Entity\Genre
+          joinColumn:
+            name: genre_id
+            referencedColumnName: id
+
+    manyToOne:
+        author:
+            targetEntity: AppBundle\Entity\Author
+            inversedBy: books

@@ -19,10 +19,10 @@ class Book
     /** @var float */
     private $rating;
 
-    /** @var int */
+    /** @var Genre */
     private $genre;
 
-    /** @var int */
+    /** @var Author */
     private $author;
 
     /**
@@ -36,14 +36,19 @@ class Book
     public function getPublicationDate() : ? \DateTime {return $this->publicationDate;}
     public function getCatalogDate()     : ? \DateTime {return $this->catalogDate;}
     public function getRating()          : ? float {return $this->rating;}
-    public function getGenre()           : ? int {return $this->genre;}
-    public function getAuthor()          : ? string {return $this->author;}
+    public function getGenre()           : Genre {return $this->genre;}
+    public function getAuthor()          : Author {return $this->author;}
 
     public function setName(string $name)                          : Book {$this->name = $name; return $this;}
     public function setPublicationDate(\DateTime $publicationDate) : Book {$this->publicationDate = $publicationDate; return $this;}
     public function setCatalogDate(\DateTime $catalogDate)         : Book {$this->catalogDate = $catalogDate;return $this;}
     public function setRating(float $rating = null)                : Book {$this->rating = $rating; return $this;}
-    public function setGenre(int $genre)                           : Book {$this->genre = $genre;return $this;}
-    public function setAuthor(string $author)                      : Book {$this->author = $author;return $this;}
+    public function setGenre(Genre $genre)                         : Book {$this->genre = $genre; return $this;}
+    public function setAuthor(Author $author)                      : Book {$this->author = $author; return $this;}
+
+    public function __construct() {
+        $this->author = new Author();
+        $this->genre = new Genre();
+    }
 }
 

@@ -2,35 +2,34 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Author;
+use AppBundle\Entity\Book;
+use AppBundle\Entity\Genre;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BookType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder->add('name')->add('publicationDate')->add('catalogDate')->add('rating')->add('genre')->add('author');
-    }/**
-     * {@inheritdoc}
-     */
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Book'
-        ));
+    public function buildForm(FormBuilderInterface $builder, array $options) {
+        $builder
+            ->add('name')
+            ->add('publicationDate')
+            ->add('catalogDate')
+            ->add('rating')
+            ->add('genre', EntityType::class, ['class' => Genre::class])
+            ->add('author', EntityType::class, ['class' => Author::class])
+        ;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockPrefix()
-    {
+    public function configureOptions(OptionsResolver $resolver) {
+        $resolver->setDefaults([
+            'data_class' => Book::class
+        ]);
+    }
+
+    public function getBlockPrefix() {
         return 'appbundle_book';
     }
-
-
 }
