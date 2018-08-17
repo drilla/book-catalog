@@ -9,6 +9,11 @@ class Author
     const GENDER_MALE    = 'male';
     const GENDER_FEMALE  = 'female';
 
+    const GENDERS = [
+        self::GENDER_MALE,
+        self::GENDER_FEMALE,
+    ];
+
     /** @var int */
     private $id;
 
@@ -33,8 +38,10 @@ class Author
     public function getId()        : int {return $this->id;}
     public function getName()      : ? string {return $this->name;}
     public function getBirthDate() : ? \DateTime {return $this->birthDate;}
-    public function getGender()    : ? int {return $this->gender;}
-    public function getBooks()     : array {return $this->books;}
+    public function getGender()    : ? string {return $this->gender;}
+
+    /** Books[] */
+    public function getBooks()     : ArrayCollection {return $this->books;}
 
     public function setName(string $name)              : Author {$this->name = $name; return $this;}
     public function setBirthDate(\DateTime $birthDate) : Author {$this->birthDate = $birthDate; return $this;}
