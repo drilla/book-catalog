@@ -16,7 +16,6 @@ class BookType extends AbstractType
         $builder
             ->add('name')
             ->add('publicationDate')
-            ->add('catalogDate')
             ->add('rating')
             ->add('genre', EntityType::class, ['class' => Genre::class])
             ->add('author', EntityType::class, ['class' => Author::class])

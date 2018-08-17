@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 class Genre
 {
     /** @var int */
@@ -9,6 +11,13 @@ class Genre
 
     /** @var string */
     private $name;
+
+    /** @var  Book[] */
+    private $books;
+
+    public function __construct() {
+        $this->books = new ArrayCollection();
+    }
 
     public function getId() : int {
         return $this->id;
@@ -22,5 +31,14 @@ class Genre
 
     public function getName() : ? string {
         return $this->name;
+    }
+
+    public function getBooks() : ArrayCollection {
+        return $this->getBooks();
+    }
+
+    public function setBooks(ArrayCollection $books) : Genre {
+        $this->books = $books;
+        return $this;
     }
 }

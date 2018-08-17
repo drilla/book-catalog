@@ -13,4 +13,8 @@ AppBundle\Entity\Genre:
             type: string
             length: 255
             unique: true
+    oneToMany:
+        books:
+            targetEntity: AppBundle\Entity\Book
+            mappedBy: genre
     lifecycleCallbacks: {  }

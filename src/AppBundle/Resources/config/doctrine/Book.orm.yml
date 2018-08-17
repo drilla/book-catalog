@@ -15,7 +15,9 @@ AppBundle\Entity\Book:
         publicationDate:
             type: date
         catalogDate:
-            type: date
+            type: datetime
+            options:
+                default: "CURRENT_TIMESTAMP"
         rating:
             type: float
             nullable: true
@@ -24,10 +26,7 @@ AppBundle\Entity\Book:
     manyToOne:
         genre:
           targetEntity: AppBundle\Entity\Genre
-          joinColumn:
-            name: genre_id
-            referencedColumnName: id
-
+          inversedBy: books
     manyToOne:
         author:
             targetEntity: AppBundle\Entity\Author
