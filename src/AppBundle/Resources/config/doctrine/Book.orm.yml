@@ -26,7 +26,6 @@ AppBundle\Entity\Book:
         genre:
           targetEntity: AppBundle\Entity\Genre
           inversedBy: books
-    manyToOne:
         author:
             targetEntity: AppBundle\Entity\Author
             inversedBy: books

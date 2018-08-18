@@ -15,11 +15,11 @@
             </tr>
             <tr>
                 <th>Publicationdate</th>
-                <td>{% if book.publicationDate %}{{ book.publicationDate|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ book.publicationDate|date('Y-m-d') }}</td>
             </tr>
             <tr>
                 <th>Catalogdate</th>
-                <td>{% if book.catalogDate %}{{ book.catalogDate|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ book.catalogDate|date('Y-m-d') }}</td>
             </tr>
             <tr>
                 <th>Rating</th>
@@ -27,11 +27,11 @@
             </tr>
             <tr>
                 <th>Genre</th>
-                <td>{{ book.genre }}</td>
+                <td>{{ book.genre.name }}</td>
             </tr>
             <tr>
                 <th>Author</th>
-                <td>{{ book.author }}</td>
+                <td>{{ book.author.name }}</td>
             </tr>
         </tbody>
     </table>
