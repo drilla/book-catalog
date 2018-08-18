@@ -26,6 +26,9 @@ framework:
     fragments: ~
     http_method_override: true
     assets: ~
+
+    #только чтобы работата fos user bundle
+    translator: ~
     php_errors:
         log: true
 

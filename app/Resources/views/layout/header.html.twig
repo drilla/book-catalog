@@ -18,6 +18,19 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('fos_user_profile_show') }}">Пользователь</a>
                     </li>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('fos_user_security_logout') }}">Выйти</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('fos_user_security_login') }}">Войти</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('fos_user_registration_register') }}">Регистрация</a>
+                        </li>
+                    {% endif %}
+
                 </ul>
             </div>
         </nav>
