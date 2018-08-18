@@ -1,0 +1,13 @@
+{# стили приложения #}
+
+{% stylesheets filter='scssphp' output="css/style.css"
+    "assets/scss/common.scss"
+%}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+{% endstylesheets %}
+
+
+{# без препроцессинга #}
+{% stylesheets 'css/bootstrap.min.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+{% endstylesheets %}

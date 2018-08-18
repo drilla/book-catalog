@@ -1,0 +1,14 @@
+{# библиотеки #}
+{% javascripts
+    'js/lib/jquery-3.3.1.min.js'
+    'js/lib/bootstrap.min.js'
+%}
+    <script src="{{ asset_url }}"> </script>
+{% endjavascripts %}
+
+{# приложение #}
+{% javascripts
+    "assets/js/common.js"
+%}
+    <script src="{{ asset_url }}"></script>
+{% endjavascripts %}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block meta %}  {% include 'layout/head/meta.html.twig' %}  {% endblock %}
+        {% block opengraph %} {% include 'layout/head/open_graph.html.twig' %}  {% endblock %}
+        {% include 'layout/head/favicon.html.twig' %}
+        {% block style %}  {% include 'layout/head/style.html.twig' %}  {% endblock %}
+        {% block title %}  {% include 'layout/head/title.html.twig' %}  {% endblock %}
+        {% block javascript %} {% include 'layout/head/js.html.twig' %}  {% endblock %}
+    </head>
+    <body>
+
+        {% include 'layout/header.html.twig' %}
+
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+
+        {% include 'layout/footer.html.twig' %}
+    </body>
+</html>
