@@ -1,8 +1,8 @@
 {% extends 'layout/base.html.twig' %}
 {% block content %}
     <h1>Genres list</h1>
-
-    <table class="table-dark">
+    <a class="btn btn-outline-light mb-2" href="{{ path('genre_new') }}">Create a new genre</a>
+    <table class="table table-dark">
         <thead>
         <tr>
             <th scope="col">Id</th>
@@ -30,9 +30,7 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a class="btn btn-dark" href="{{ path('genre_new') }}">Create a new genre</a>
-        </li>
-    </ul>
+
+
+
 {% endblock %}

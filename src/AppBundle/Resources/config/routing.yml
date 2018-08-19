@@ -7,5 +7,9 @@ app_author:
 app_genre:
     resource: "@AppBundle/Resources/config/routing/genre.yml"
     prefix:   /genre
+app_home:
+    path:     /
+    defaults: { _controller: "AppBundle:Book:index" }
+    methods:  GET
 
 
