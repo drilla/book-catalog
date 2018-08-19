@@ -1,0 +1,5 @@
+{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+    {{ form_start(delete_form) }}
+        <input class="btn btn-outline-light mb-2" type="submit" value="Delete">
+    {{ form_end(delete_form) }}
+{% endif %}
