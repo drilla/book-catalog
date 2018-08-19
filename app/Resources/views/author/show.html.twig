@@ -24,17 +24,13 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a class="btn btn-dark" href="{{ path('author_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a class="btn btn-dark" href="{{ path('author_edit', { 'id': author.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
+            <a class="btn btn-outline-light" href="{{ path('author_index') }}">Back to the list</a>
+
+            <a class="btn btn-outline-light" href="{{ path('author_edit', { 'id': author.id }) }}">Edit</a>
+            <div class="d-inline-block">
+                    {{ form_start(delete_form) }}
+                        <input class="btn btn-outline-light" type="submit" value="Delete">
+                    {{ form_end(delete_form) }}
+            </div>
 {% endblock %}

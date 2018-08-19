@@ -17,4 +17,5 @@ AppBundle\Entity\Genre:
         books:
             targetEntity: AppBundle\Entity\Book
             mappedBy: genre
+            onDelete: restrict
     lifecycleCallbacks: {  }

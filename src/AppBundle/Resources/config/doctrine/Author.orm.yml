@@ -23,3 +23,4 @@ AppBundle\Entity\Author:
         books:
             targetEntity: AppBundle\Entity\Book
             mappedBy: author
+            onDelete: restrict
