@@ -16,9 +16,6 @@ AppBundle\Entity\Book:
             type: date
         catalogDate:
             type: datetimetz
-        rating:
-            type: float
-            nullable: true
     lifecycleCallbacks:
         prePersist: [prePersist]
 

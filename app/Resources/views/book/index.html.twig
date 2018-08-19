@@ -14,7 +14,9 @@
             <th>Rating</th>
             <th>Genre</th>
             <th>Author</th>
-            <th>Actions</th>
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <th>Actions</th>
+            {% endif %}
         </tr>
         </thead>
         <tbody>
@@ -35,16 +37,12 @@
                         {{ book.author.name }}
                     </a>
                 </td>
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('book_show', { 'id': book.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('book_edit', { 'id': book.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                        <a class="btn btn-sm btn-outline-light" href="{{ path('book_show', { 'id': book.id }) }}">show</a>
+                        <a class="btn btn-sm btn-outline-light" href="{{ path('book_edit', { 'id': book.id }) }}">edit</a>
                 </td>
+                {% endif %}
             </tr>
         {% endfor %}
         </tbody>

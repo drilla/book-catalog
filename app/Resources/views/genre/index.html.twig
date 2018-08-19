@@ -7,7 +7,9 @@
         <tr>
             <th>Id</th>
             <th>Name</th>
-            <th>Actions</th>
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <th>Actions</th>
+            {% endif %}
         </tr>
         </thead>
         <tbody>
@@ -15,16 +17,12 @@
             <tr>
                 <td><a href="{{ path('genre_show', { 'id': genre.id }) }}">{{ genre.id }}</a></td>
                 <td><a href="{{ url('book_index', {'genre' : genre.id}) }}" class="">{{ genre.name }}</a></td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('genre_show', { 'id': genre.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('genre_edit', { 'id': genre.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                    <td>
+                        <a class="btn btn-sm btn-outline-light" href="{{ path('genre_show', { 'id': genre.id }) }}">show</a>
+                        <a class="btn btn-sm btn-outline-light" href="{{ path('genre_edit', { 'id': genre.id }) }}">edit</a>
+                    </td>
+                {% endif %}
             </tr>
         {% endfor %}
         </tbody>

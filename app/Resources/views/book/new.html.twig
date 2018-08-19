@@ -5,9 +5,9 @@
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input class="btn btn-dark" type="submit" value="Create" />
+        <input class="btn btn-outline-light mb-2" type="submit" value="Create" />
     {{ form_end(form) }}
 
-    <a class="btn btn-dark" href="{{ path('book_index') }}">Back to the list</a>
+    <a class="btn btn-outline-light mb-2" href="{{ path('book_index') }}">Back to the list</a>
 
 {% endblock %}

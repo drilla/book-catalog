@@ -6,11 +6,13 @@
     <table class="table table-dark">
         <thead>
         <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Name</th>
-            <th scope="col">Birthdate</th>
-            <th scope="col">Gender</th>
-            <th scope="col">Actions</th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Birthdate</th>
+            <th>Gender</th>
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <th>Actions</th>
+            {% endif %}
         </tr>
         </thead>
         <tbody>
@@ -20,11 +22,12 @@
                 <td><a href="{{ url('book_index', {'author' : author.id}) }}" class="">{{ author.name }}</a></td>
                 <td>{% if author.birthDate %}{{ author.birthDate|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ author.gender }}</td>
-                <td>
-                    <a class="btn btn-outline-light btn-sm" href="{{ path('author_show', { 'id': author.id }) }}">show</a>
-                    <a class="btn btn-outline-light btn-sm" href="{{ path('author_edit', { 'id': author.id }) }}">edit</a>
-
-                </td>
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                    <td>
+                        <a class="btn btn-outline-light btn-sm" href="{{ path('author_show', { 'id': author.id }) }}">show</a>
+                        <a class="btn btn-outline-light btn-sm" href="{{ path('author_edit', { 'id': author.id }) }}">edit</a>
+                    </td>
+                {% endif %}
             </tr>
         {% endfor %}
         </tbody>
