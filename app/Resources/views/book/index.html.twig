@@ -25,7 +25,13 @@
                 <td>{% if book.publicationDate %}{{ book.publicationDate|date('Y-m-d') }}{% endif %}</td>
                 <td>{% if book.catalogDate %}{{ book.catalogDate|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ book.rating }}</td>
-                <td>{{ book.genre.name }}</td>
+                <td>
+                    {%  set genreForm = filter_forms[book.id] %}
+                    {{ form_start(genreForm) }}
+                        <button type="submit" class="btn btn-link text-light text-underline">{{ book.genre.name }}</button>
+                    {{ form_end(genreForm) }}
+
+                </td>
                 <td>{{ book.author.name }}</td>
                 <td>
                     <ul>

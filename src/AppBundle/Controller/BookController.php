@@ -3,6 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Book;
+use AppBundle\Form\Filter\BookType;
+use Knp\Component\Pager\Pagination\PaginationInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,6 +19,13 @@ class BookController extends Controller
             ->orderBy('book.id', 'DESC')
         ;
 
+        $form = $this->createFilterForm();
+
+        $form->handleRequest($request);
+
+        //добавляем фильтрацию к форме
+        $this->filterQuery($query, $form);
+
         $paginationService = $this->get('knp_paginator');
 
         $pagination = $paginationService->paginate(
@@ -25,8 +34,12 @@ class BookController extends Controller
             10
         );
 
+        $filterFormList = $this->getFilterList($pagination);
+
         return $this->render('book/index.html.twig', [
-            'pagination' => $pagination
+            'pagination'   => $pagination,
+            'filter_forms' => $filterFormList,
+       
         ]);
     }
 
@@ -94,5 +107,43 @@ class BookController extends Controller
             ->setAction($this->generateUrl('book_delete', ['id' => $book->getId()]))
             ->setMethod('DELETE')
             ->getForm();
+    }
+
+    private function createFilterForm(Book $book = null) : FormInterface {
+        $form = $this->createForm(BookType::class);
+
+        if ($book) $form->get('genre')->setData($book->getGenre()->getId());
+
+        return $form;
+    }
+
+    /**
+     * Добавляем в запрос фильтры по данным формы
+     */
+    private function filterQuery(\Doctrine\ORM\QueryBuilder $query, FormInterface $form) {
+        $genre = $form->get('genre')->getData();
+        if ($genre) {
+            $query
+                ->andWhere('book.genre  = :genre')
+                ->setParameter('genre', $genre)
+            ;
+        }
+    }
+
+    /**
+     * массив форм фильтров.
+     */
+    private function getFilterList(PaginationInterface $pagination) {
+        $filterForms = [];
+        /** @var Book $book */
+        foreach ($pagination as $book) {
+            $bookId = $book->getId();
+
+            if (!array_key_exists($bookId, $filterForms)) {
+                $filterForms[$book->getId()] = $this->createFilterForm($book)->createView();
+            }
+        }
+
+        return $filterForms;
     }
 }
