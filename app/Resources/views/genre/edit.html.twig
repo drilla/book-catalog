@@ -9,7 +9,5 @@
     {{ form_end(edit_form) }}
 
     <a class="btn btn-outline-light mb-2"  href="{{ path('genre_index') }}">Back to the list</a>
-    {{ form_start(delete_form) }}
-        <input class="btn btn-outline-light mb-2" type="submit" value="Delete">
-    {{ form_end(delete_form) }}
+    {% include 'genre/_delete.html.twig' %}
 {% endblock %}

@@ -67,6 +67,9 @@ class GenreController extends Controller
     }
 
     public function deleteAction(Request $request, Genre $genre) {
+
+        $this->denyAccessUnlessGranted('delete', $genre);
+
         $form = $this->createDeleteForm($genre);
         $form->handleRequest($request);
 

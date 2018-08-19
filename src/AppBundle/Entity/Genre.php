@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 class Genre
 {
@@ -33,8 +34,8 @@ class Genre
         return $this->name;
     }
 
-    public function getBooks() : ArrayCollection {
-        return $this->getBooks();
+    public function getBooks() : Collection {
+        return $this->books;
     }
 
     public function setBooks(ArrayCollection $books) : Genre {
