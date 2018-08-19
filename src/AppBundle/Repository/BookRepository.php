@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Book;
+
 class BookRepository extends \Doctrine\ORM\EntityRepository
 {
     /** @return  Book[] */

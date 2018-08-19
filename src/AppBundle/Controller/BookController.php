@@ -9,13 +9,24 @@ use Symfony\Component\HttpFoundation\Request;
 
 class BookController extends Controller
 {
-    public function indexAction() {
+    public function indexAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
 
-        $books = $em->getRepository('AppBundle:Book')->findLatest(10);
+        $query = $em->getRepository(Book::class)
+            ->createQueryBuilder('book')
+            ->orderBy('book.id', 'DESC')
+        ;
+
+        $paginationService = $this->get('knp_paginator');
+
+        $pagination = $paginationService->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            10
+        );
 
         return $this->render('book/index.html.twig', [
-            'books' => $books,
+            'pagination' => $pagination
         ]);
     }
 

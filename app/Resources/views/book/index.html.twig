@@ -7,18 +7,18 @@
     <table class="table table-dark">
         <thead>
         <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Name</th>
-            <th scope="col">Publicationdate</th>
-            <th scope="col">Catalogdate</th>
-            <th scope="col">Rating</th>
-            <th scope="col">Genre</th>
-            <th scope="col">Author</th>
-            <th scope="col">Actions</th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Publicationdate</th>
+            <th>Catalogdate</th>
+            <th>Rating</th>
+            <th>Genre</th>
+            <th>Author</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
-        {% for book in books %}
+        {% for book in pagination %}
             <tr>
                 <td><a href="{{ path('book_show', { 'id': book.id }) }}">{{ book.id }}</a></td>
                 <td>{{ book.name }}</td>
@@ -41,4 +41,8 @@
         {% endfor %}
         </tbody>
     </table>
+
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
 {% endblock %}
