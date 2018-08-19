@@ -12,7 +12,7 @@ class BookController extends Controller
     public function indexAction() {
         $em = $this->getDoctrine()->getManager();
 
-        $books = $em->getRepository('AppBundle:Book')->findAll();
+        $books = $em->getRepository('AppBundle:Book')->findLatest(10);
 
         return $this->render('book/index.html.twig', [
             'books' => $books,
