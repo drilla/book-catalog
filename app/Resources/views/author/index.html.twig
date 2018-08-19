@@ -17,7 +17,7 @@
         {% for author in authors %}
             <tr>
                 <td><a href="{{ path('author_show', { 'id': author.id }) }}">{{ author.id }}</a></td>
-                <td>{{ author.name }}</td>
+                <td><a href="{{ url('book_index', {'author' : author.id}) }}" class="">{{ author.name }}</a></td>
                 <td>{% if author.birthDate %}{{ author.birthDate|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ author.gender }}</td>
                 <td>

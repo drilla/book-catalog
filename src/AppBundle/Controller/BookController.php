@@ -4,7 +4,6 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Book;
 use AppBundle\Form\Filter\BookType;
-use Knp\Component\Pager\Pagination\PaginationInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,11 +18,11 @@ class BookController extends Controller
             ->orderBy('book.id', 'DESC')
         ;
 
-        $form = $this->createFilterForm();
+        $form = $this->createForm(BookType::class);
 
         $form->handleRequest($request);
 
-        //добавляем фильтрацию к форме
+        //добавляем фильтрацию к запросу с использованием данных формы
         $this->filterQuery($query, $form);
 
         $paginationService = $this->get('knp_paginator');
@@ -34,12 +33,8 @@ class BookController extends Controller
             10
         );
 
-        $filterFormList = $this->getFilterList($pagination);
-
         return $this->render('book/index.html.twig', [
             'pagination'   => $pagination,
-            'filter_forms' => $filterFormList,
-       
         ]);
     }
 
@@ -109,14 +104,6 @@ class BookController extends Controller
             ->getForm();
     }
 
-    private function createFilterForm(Book $book = null) : FormInterface {
-        $form = $this->createForm(BookType::class);
-
-        if ($book) $form->get('genre')->setData($book->getGenre()->getId());
-
-        return $form;
-    }
-
     /**
      * Добавляем в запрос фильтры по данным формы
      */
@@ -128,22 +115,13 @@ class BookController extends Controller
                 ->setParameter('genre', $genre)
             ;
         }
-    }
 
-    /**
-     * массив форм фильтров.
-     */
-    private function getFilterList(PaginationInterface $pagination) {
-        $filterForms = [];
-        /** @var Book $book */
-        foreach ($pagination as $book) {
-            $bookId = $book->getId();
-
-            if (!array_key_exists($bookId, $filterForms)) {
-                $filterForms[$book->getId()] = $this->createFilterForm($book)->createView();
-            }
+        $author = $form->get('author')->getData();
+        if ($author) {
+            $query
+                ->andWhere('book.author  = :author')
+                ->setParameter('author', $author)
+            ;
         }
-
-        return $filterForms;
     }
 }

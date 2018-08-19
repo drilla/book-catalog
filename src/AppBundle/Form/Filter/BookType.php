@@ -14,7 +14,9 @@ class BookType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder->setMethod('GET')
-            ->add('genre', HiddenType::class);
+            ->add('genre', HiddenType::class)
+            ->add('author', HiddenType::class)
+        ;
 
     }
 
@@ -25,6 +27,9 @@ class BookType extends AbstractType
     }
 
     public function getBlockPrefix() {
-        return 'book_filter';
+        /**
+         * Пустое имя для более удобного обращения из разметки
+         */
+        return '';
     }
 }
