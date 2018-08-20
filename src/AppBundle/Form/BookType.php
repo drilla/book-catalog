@@ -17,7 +17,6 @@ class BookType extends AbstractType
         $builder
             ->add('name')
             ->add('publicationDate', DateType::class, ['years' => range(date('Y'), 1700),])
-            ->add('rating')
             ->add('genre', EntityType::class, [
                 'class' => Genre::class,
                 'choice_label' => function(Genre $genre) {
