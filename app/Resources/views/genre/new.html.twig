@@ -4,12 +4,8 @@
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+        <input class="btn btn-outline-light mb-2" type="submit" value="Create" />
     {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('genre_index') }}">Back to the list</a>
-        </li>
-    </ul>
+    <a class="btn btn-outline-light" href="{{ path('genre_index') }}">Back to the list</a>
 {% endblock %}

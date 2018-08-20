@@ -3,7 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Book;
-use AppBundle\Form\Filter\BookType;
+use AppBundle\Form\Filter;
+use AppBundle\Form;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,12 +19,14 @@ class BookController extends Controller
             ->orderBy('book.id', 'DESC')
         ;
 
-        $form = $this->createForm(BookType::class);
+        $form = $this->createForm(Filter\BookType::class);
 
         $form->handleRequest($request);
 
-        //добавляем фильтрацию к запросу с использованием данных формы
-        $this->filterQuery($query, $form);
+        if ($form->isValid()) {
+            //добавляем фильтрацию к запросу с использованием данных формы
+            $this->filterQuery($query, $form);
+        }
 
         $paginationService = $this->get('knp_paginator');
 
@@ -40,7 +43,7 @@ class BookController extends Controller
 
     public function newAction(Request $request) {
         $book = new Book();
-        $form = $this->createForm('AppBundle\Form\BookType', $book);
+        $form = $this->createForm(Form\BookType::class, $book);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
