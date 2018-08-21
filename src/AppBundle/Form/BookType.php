@@ -33,7 +33,7 @@ class BookType extends AbstractType
                     return $author->getName();
                 },
                 'placeholder' => 'Выберите автора...'
-            ])
+            ])->add('image', ImageType::class, ['label' => 'Обложка'])
         ;
     }
 

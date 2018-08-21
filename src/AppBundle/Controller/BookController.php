@@ -47,6 +47,8 @@ class BookController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //todo image
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($book);
             $em->flush();

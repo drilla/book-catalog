@@ -48,3 +48,9 @@ services:
         class: AppBundle\Security\DeleteGenreVoter
         tags:
         - { name: security.voter }
+
+    file_manager:
+        class: AppBundle\Service\FileManager
+        arguments:
+            $uploadDir: '%upload_directory%'
+        public: true

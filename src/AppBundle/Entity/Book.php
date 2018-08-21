@@ -24,6 +24,9 @@ class Book
     /** @var Author */
     private $author;
 
+    /** @var  Image */
+    private $image;
+
     /**
      * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
      * Короткая запись Entity. Это эксперимент! В реальном проекте я согласую стиль.
@@ -36,10 +39,12 @@ class Book
     public function getCatalogDate()     : ? \DateTime {return $this->catalogDate;}
     public function getGenre()           : ? Genre {return $this->genre;}
     public function getAuthor()          : ? Author {return $this->author;}
+    public function getImage() : ? Image {return $this->image;}
 
     public function setName(string $name)                          : Book {$this->name = $name; return $this;}
     public function setPublicationDate(\DateTime $publicationDate) : Book {$this->publicationDate = $publicationDate; return $this;}
     public function setGenre(Genre $genre)                         : Book {$this->genre = $genre; return $this;}
+    public function setImage(Image $image) : self {$this->image = $image;return $this;}
     public function setAuthor(Author $author)                      : Book {$this->author = $author; return $this;}
 
     public function prePersist(LifecycleEventArgs  $eventArgs) {

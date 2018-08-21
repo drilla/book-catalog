@@ -20,6 +20,8 @@ AppBundle\Entity\Book:
             - NotBlank: ~
             - Length:
                 max: 255
+        image:
+            - Valid: ~
 
 AppBundle\Entity\User:
     constraints:
@@ -29,3 +31,13 @@ AppBundle\Entity\User:
             - NotBlank: ~
             - Length:
                 max: 255
+
+AppBundle\Entity\Image:
+    properties:
+        file:
+            - Image:
+                minWidth: 200
+                minHeight: 200
+                maxWidth: 2000
+                maxHeight: 2000
+                maxSize: 5M

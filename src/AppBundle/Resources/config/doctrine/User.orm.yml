@@ -12,3 +12,10 @@ AppBundle\Entity\User:
           type: string
           length: 255
           unique: true
+  oneToOne:
+    image:
+      targetEntity: AppBundle\Entity\Image
+      joinColumn:
+        name: image
+        referencedColumnName: id
+        onDelete: restrict

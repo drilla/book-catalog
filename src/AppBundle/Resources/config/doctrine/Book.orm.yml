@@ -16,6 +16,10 @@ AppBundle\Entity\Book:
             type: date
         catalogDate:
             type: datetimetz
+        image:
+            type: string
+            length: 255
+            nullable: true
     lifecycleCallbacks:
         prePersist: [prePersist]
 

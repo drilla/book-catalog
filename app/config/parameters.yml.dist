@@ -17,3 +17,9 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
+
+    # куда загружать картинки
+    upload_directory: '%kernel.project_dir%/web/uploads'
+
+    # базовый урл для картинок
+    upload_base_url: '/uploads'
