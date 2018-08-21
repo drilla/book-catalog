@@ -18,9 +18,6 @@ class Book
     /** @var \DateTime */
     private $catalogDate;
 
-    /** @var float */
-    private $rating;
-
     /** @var Genre */
     private $genre;
 
