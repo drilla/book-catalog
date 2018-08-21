@@ -8,10 +8,8 @@ use AppBundle\Entity\Genre;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Length;
 
 class BookType extends AbstractType
 {
@@ -21,7 +19,7 @@ class BookType extends AbstractType
          * валидация на связанные сущности применяется автоматом
          */
         $builder
-            ->add('name', TextType::class, ['constraints' => [new Length(['max' => 255])]])
+            ->add('name')
             ->add('publicationDate', DateType::class, ['years' => range(date('Y'), 1700),])
             ->add('genre', EntityType::class, [
                 'class' => Genre::class,

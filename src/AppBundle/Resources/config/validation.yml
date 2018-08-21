@@ -1,1 +1,29 @@
-# пока всю валидацию доверяем форме - в большем нет необходимости
+AppBundle\Entity\Author:
+    properties:
+        name:
+            - NotBlank: ~
+            - Length:
+                max: 255
+
+AppBundle\Entity\Genre:
+    properties:
+        name:
+            - NotBlank: ~
+            - Length:
+                max: 255
+
+AppBundle\Entity\Book:
+    properties:
+        name:
+            - NotBlank: ~
+            - Length:
+                max: 255
+
+AppBundle\Entity\User:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: name
+    properties:
+        name:
+            - NotBlank: ~
+            - Length:
+                max: 255

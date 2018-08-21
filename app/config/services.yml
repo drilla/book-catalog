@@ -29,6 +29,21 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
+    # форма профиля
+    app.form.profile:
+        class: AppBundle\Form\User\ProfileFormType
+        arguments:
+            $class: AppBundle\Entity\User
+        tags:
+            - { name: form.type, alias: app_user_profile }
+    # форма регистрации
+    app.form.registration:
+        class: AppBundle\Form\User\RegistrationFormType
+        arguments:
+            $class: AppBundle\Entity\User
+        tags:
+            - { name: form.type, alias: app_user_registration }
+
     delete_genre_voter:
         class: AppBundle\Security\DeleteGenreVoter
         tags:
